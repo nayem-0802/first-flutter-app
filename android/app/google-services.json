@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "253107811283",
+    "project_id": "adventour-bd",
+    "storage_bucket": "adventour-bd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253107811283:android:b8a3c2b9b9059e6b9af526",
+        "android_client_info": {
+          "package_name": "com.example.first_flutter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqfqv2my411G5yEKmaqTyOdi4U8pbknHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

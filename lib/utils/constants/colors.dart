@@ -31,6 +31,8 @@ class AppColor{
 
   //pop up colors
   static const popup_backgroung = Color(0xFFE8F6E8);
+  static const warning_backgroung = Color(0xFFDE626A);
+  static const success_backgroung = Color(0xFF295f48);
 
 
 }

@@ -11,7 +11,7 @@ class InputField{
     ),
     enabledBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(8.0),
-      borderSide: const BorderSide(width: 1, style: BorderStyle.solid, color: AppColor.ip_focus),
+      borderSide: const BorderSide(width: 1, style: BorderStyle.solid, color: AppColor.ip_stroke),
     ),
     focusedBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(8.0),

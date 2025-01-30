@@ -1,7 +1,10 @@
+import 'package:first_flutter_app/features/login/login_page.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:first_flutter_app/utils/custom_theme/button.dart';
 import 'package:first_flutter_app/utils/custom_theme/text_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../utils/device/device_utility.dart';
 
 class JoinUsPage extends StatelessWidget {
@@ -13,7 +16,7 @@ class JoinUsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
                 Image(
@@ -36,7 +39,9 @@ class JoinUsPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 120),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => const LoginPage());
+                      },
                       child: Text("Login"),
                       style: ElivatedButton.customButtom.style,
                     ),
@@ -82,7 +87,7 @@ class JoinUsPage extends StatelessWidget {
                 SizedBox(
                   width: DevUtils.getScreenWidth(),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 120),
+                    padding: EdgeInsets.symmetric(horizontal: 120),
                     child: ElevatedButton(
                       onPressed: () {},
                       child: Text("Be a guide"),

@@ -5,9 +5,9 @@ class AppText {
   AppText._();
   static TextTheme customText = TextTheme(
     //custom title theme
-    titleLarge: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: AppColor.txt_primary),
-    titleMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: AppColor.txt_secondary),
-    titleSmall: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: AppColor.txt_primary),
+    titleLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: AppColor.txt_primary),
+    titleMedium: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: AppColor.txt_secondary),
+    titleSmall: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: AppColor.txt_primary),
 
     //body text theme
     bodyLarge: TextStyle(fontSize: 16,fontWeight: FontWeight.bold, color: AppColor.txt_primary),
