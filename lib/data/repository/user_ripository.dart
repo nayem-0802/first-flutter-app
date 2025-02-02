@@ -67,7 +67,9 @@ class UserRipository extends GetxController{
 
   Future<void> updateSingleFeild(Map<String, dynamic> json) async{
     try{
-      await _db.collection("Users").doc().update(json);
+      final userId = await AuthRepository.instance.authUser?.uid;
+      await _db.collection("Users").doc(userId).update(json);
+
     }on FirebaseAuthException catch(e){
       CustomSnackbar.show("Warning", "Something went wrong", AppColor.warning_backgroung);
     } on FirebaseException catch(e){

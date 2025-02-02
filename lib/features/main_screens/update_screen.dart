@@ -61,6 +61,13 @@ class UpdateScreen extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
+                  TextFormField(
+                    controller: controller.phone,
+                    decoration: InputDecoration(
+                      hintText: "new phone",
+                      hintStyle: TextStyle(fontWeight: FontWeight.normal),
+                    ),
+                  ),
                   SizedBox(
                     height: 35,
                   ),

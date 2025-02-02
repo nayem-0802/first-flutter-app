@@ -49,9 +49,11 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 5),
-            Text(
-              controller.user.value.phone,
-              style: TextStyle(color: AppColor.txt_accent, fontSize: 14),
+            Obx(
+              () => Text(
+                controller.user.value.phone,
+                style: TextStyle(color: AppColor.txt_accent, fontSize: 14),
+              ),
             ),
             const SizedBox(height: 20),
             Flexible(
@@ -78,7 +80,7 @@ class ProfilePage extends StatelessWidget {
                         icon: Iconsax.logout,
                         iconColor: AppColor.warning_backgroung,
                         textColor: AppColor.warning_backgroung,
-                        onTap: ()=> AuthRepository.instance.logOut(),
+                        onTap: () => AuthRepository.instance.logOut(),
                       ),
                     ],
                   ),
@@ -92,4 +94,3 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
-

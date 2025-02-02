@@ -1,4 +1,3 @@
-
 import 'package:first_flutter_app/data/repository/user_ripository.dart';
 import 'package:first_flutter_app/features/auth_controller/user_controller.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
@@ -24,19 +23,29 @@ class UpdateController extends GetxController{
 
   Future<void> initializedName() async{
     username.text = userController.user.value.name;
+    phone.text = userController.user.value.phone;
   }
 
   Future<void> updateUserName() async{
     try{
       CustomProgressIndicator();
 
-      Map<String, dynamic> name = {
+      Map<String, dynamic> newName = {
         'name' : username.text.trim(),
+        'phone' : phone.text.trim(),
       };
 
-      await userRipository.updateSingleFeild(name);
+      await userRipository.updateSingleFeild(newName);
+
+      userController.user.update((user) {
+        if (user != null) {
+          user.name = username.text.trim();
+          user.phone = phone.text.trim();
+        }
+      });
 
       userController.user.value.name = username.text.trim();
+      userController.user.value.phone = phone.text.trim();
 
       CustomProgressIndicator.hide();
 
