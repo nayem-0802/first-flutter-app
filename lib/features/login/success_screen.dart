@@ -1,7 +1,5 @@
-import 'package:first_flutter_app/features/login/login_page.dart';
+import 'package:first_flutter_app/data/repository/auth_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../../utils/constants/textstring.dart';
 import '../../utils/custom_theme/text_theme.dart';
 import '../../utils/device/device_utility.dart';
@@ -52,7 +50,7 @@ class SuccessScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 120),
                     child: ElevatedButton(
-                      onPressed: () => Get.to(() => const LoginPage()),
+                      onPressed: () => AuthRepository.instance.screenRedirect(),
                       child: Text("Continue"),
                     ),
                   ),

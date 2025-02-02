@@ -48,7 +48,7 @@ class Signup extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 50.0,
+                        height: 20,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -96,18 +96,21 @@ class Signup extends StatelessWidget {
                                 height: 16.0,
                               ),
                               Obx(
-                                ()=> TextFormField(
+                                () => TextFormField(
                                   controller: controller.password,
                                   validator: (value) =>
                                       FormValidator.validatepass(value),
                                   obscureText: controller.hidePass.value,
                                   decoration: InputDecoration(
                                     suffixIcon: IconButton(
-                                        onPressed: () => controller.hidePass.value = !controller.hidePass.value,
-                                        icon: Icon(controller.hidePass.value ? Iconsax.eye_slash : Iconsax.eye)),
+                                        onPressed: () => controller.hidePass
+                                            .value = !controller.hidePass.value,
+                                        icon: Icon(controller.hidePass.value
+                                            ? Iconsax.eye_slash
+                                            : Iconsax.eye)),
                                     hintText: "password",
-                                    hintStyle:
-                                        TextStyle(fontWeight: FontWeight.normal),
+                                    hintStyle: TextStyle(
+                                        fontWeight: FontWeight.normal),
                                   ),
                                 ),
                               ),
@@ -157,7 +160,7 @@ class Signup extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: 30.0,
+                                height: 25.0,
                               ),
                               TextButton(
                                 onPressed: () {
@@ -169,7 +172,7 @@ class Signup extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: 80.0,
+                                height: DevUtils.bottomNavigation() * 0.75,
                               ),
                             ],
                           ),

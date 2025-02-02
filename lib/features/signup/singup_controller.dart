@@ -49,7 +49,7 @@ class SingupController extends GetxController {
       CustomProgressIndicator.hide();
 
       CustomSnackbar.show("Successful!", "Account created successfully", AppColor.success_backgroung);
-      Get.to(()=> const VarifyEmailScreen());
+      Get.to(()=> VerifyEmailScreen(email: email.text.trim()));
 
     }catch (e){
       CustomProgressIndicator.hide();

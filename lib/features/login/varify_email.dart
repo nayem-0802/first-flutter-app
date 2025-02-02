@@ -1,5 +1,5 @@
-import 'package:first_flutter_app/features/login/login_page.dart';
-import 'package:first_flutter_app/features/login/success_screen.dart';
+import 'package:first_flutter_app/data/repository/auth_repository.dart';
+import 'package:first_flutter_app/features/signup/verify_email_controller.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:first_flutter_app/utils/constants/textstring.dart';
 import 'package:first_flutter_app/utils/device/device_utility.dart';
@@ -9,18 +9,21 @@ import 'package:get/get.dart';
 
 import '../../utils/custom_theme/text_theme.dart';
 
-class VarifyEmailScreen extends StatelessWidget {
-  const VarifyEmailScreen({super.key});
+class VerifyEmailScreen extends StatelessWidget {
+  const VerifyEmailScreen({super.key, this.email});
+
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(VerifyEmailController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.primary_color,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-              onPressed: () => Get.offAll(() => const LoginPage()),
+              onPressed: () => AuthRepository.instance.logOut(),
               icon: const Icon(CupertinoIcons.clear))
         ],
       ),
@@ -52,7 +55,7 @@ class VarifyEmailScreen extends StatelessWidget {
                   height: 12.0,
                 ),
                 Text(
-                  "email@email.com",
+                  email ?? 'example@gmail.com',
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -63,7 +66,7 @@ class VarifyEmailScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 120),
                     child: ElevatedButton(
-                      onPressed: () => Get.to(() => const SuccessScreen()),
+                      onPressed: () => controller.chechVerificationStatus(),
                       child: Text("Continue"),
                     ),
                   ),
@@ -72,7 +75,7 @@ class VarifyEmailScreen extends StatelessWidget {
                   height: 12.0,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => controller.sendEmailVerification(),
                   child: Text(
                     "Resend request",
                     style: AppText.customText.bodySmall,

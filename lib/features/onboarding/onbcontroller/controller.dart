@@ -19,7 +19,7 @@ class OnController extends GetxController {
   void nextpage(){
     if(currentPage.value == 2){
       final deviceStorage = GetStorage();
-      deviceStorage.write('IsFirstTime', false);
+      deviceStorage.write('isFirstTime', false);
       Get.offAll(() => const JoinUsPage());
     }else{
       int page = currentPage.value + 1;

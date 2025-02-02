@@ -16,5 +16,8 @@ class LightTheme {
     textTheme: AppText.customText,
     elevatedButtonTheme: ElivatedButton.customButtom,
     inputDecorationTheme: InputField.inputTheme,
+    navigationBarTheme: NavigationBarThemeData(
+      labelTextStyle: WidgetStatePropertyAll(TextStyle(color: Colors.white))
+    )
   );
 }

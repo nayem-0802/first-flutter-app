@@ -15,6 +15,8 @@ class UserModel {
     required this.profilePic,
   });
 
+  static UserModel empty() => UserModel(id: " ", name: " ", email: " ", phone: " ", profilePic: " ");
+
   Map<String, dynamic> toJson() {
     return {
       'name': name,
@@ -24,8 +26,7 @@ class UserModel {
     };
   }
 
-  factory UserModel.formSnaphot(
-      DocumentSnapshot<Map<String, dynamic>> document) {
+  factory UserModel.formSnaphot(DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() != null) {
       final data = document.data()!;
       return UserModel(
@@ -34,7 +35,8 @@ class UserModel {
           email: data['email'] ?? '',
           phone: data['phone'] ?? '',
           profilePic: data['profilePic'] ?? '');
+    }else{
+      return UserModel.empty();
     }
-    throw 'Something';
   }
 }

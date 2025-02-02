@@ -19,9 +19,9 @@ class AppColor{
   static const txt_accent = Color(0xFF817E7E);
 
   //input field colors
-  static const ip_stroke = Color(0xFF888888);
+  static const ip_stroke = Color(0xFF999999);
   static const ip_backgroung = Color(0xFFF5F5F5);
-  static const ip_hint = Color(0xFF817E7E);
+  static const ip_hint = Color(0xFF999999);
   static const ip_focus = Color(0xFF0E3640);
   static const ip_error = Color(0xFFF24822);
 
