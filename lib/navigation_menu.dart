@@ -1,4 +1,6 @@
 import 'package:first_flutter_app/features/main_screens/home.dart';
+import 'package:first_flutter_app/features/main_screens/notification_screen.dart';
+import 'package:first_flutter_app/features/main_screens/search_screen.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,15 +21,29 @@ class NavigationMenu extends StatelessWidget {
           height: 80,
           elevation: 0,
           selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected: (index) => controller.selectedIndex.value = index,
+          onDestinationSelected: (index) =>
+              controller.selectedIndex.value = index,
           backgroundColor: AppColor.txt_secondary,
           indicatorColor: AppColor.primary_color,
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
           destinations: const [
-            NavigationDestination(icon: Icon(Iconsax.home, color: Colors.white), selectedIcon: Icon(Iconsax.home), label: "home",),
-            NavigationDestination(icon: Icon(Iconsax.search_normal, color: Colors.white), selectedIcon: Icon(Iconsax.search_normal),label: "search"),
-            NavigationDestination(icon: Icon(Iconsax.notification, color: Colors.white), selectedIcon: Icon(Iconsax.notification),label: "notification"),
-            NavigationDestination(icon: Icon(Iconsax.user, color: Colors.white), selectedIcon: Icon(Iconsax.user),label: "profile"),
+            NavigationDestination(
+              icon: Icon(Iconsax.home, color: Colors.white),
+              selectedIcon: Icon(Iconsax.home),
+              label: "home",
+            ),
+            NavigationDestination(
+                icon: Icon(Iconsax.search_normal, color: Colors.white),
+                selectedIcon: Icon(Iconsax.search_normal),
+                label: "search"),
+            NavigationDestination(
+                icon: Icon(Iconsax.notification, color: Colors.white),
+                selectedIcon: Icon(Iconsax.notification),
+                label: "notification"),
+            NavigationDestination(
+                icon: Icon(Iconsax.user, color: Colors.white),
+                selectedIcon: Icon(Iconsax.user),
+                label: "profile"),
           ],
         ),
       ),
@@ -41,12 +57,8 @@ class NavigationController extends GetxController {
 
   final screen = [
     const HomeScreen(),
-    Container(
-      color: Colors.amberAccent,
-    ),
-    Container(
-      color: Colors.orange,
-    ),
+    SearchScreen(),
+    NotificationScreen(),
     ProfilePage(),
   ];
 }

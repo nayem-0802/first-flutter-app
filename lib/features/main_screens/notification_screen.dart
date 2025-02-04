@@ -1,9 +1,11 @@
 import 'package:first_flutter_app/utils/constants/colors.dart';
+import 'package:first_flutter_app/utils/custom_theme/text_theme.dart';
 import 'package:first_flutter_app/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
 import '../../utils/widgets/custom_item.dart';
 
-class SearchScreen extends StatelessWidget {
+
+class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,22 +23,14 @@ class SearchScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: DevUtils.appBarHeight() + 8,
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: TextField(
-                autofocus: true,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: AppColor.secondary_color,
-                  hintText: 'Search...',
-                  suffixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-                style: TextStyle(fontWeight: FontWeight.w500),
-              ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "clear all ",
+                    style: AppText.customText.bodyMedium,
+                  )),
             ),
             Flexible(
               fit: FlexFit.tight,

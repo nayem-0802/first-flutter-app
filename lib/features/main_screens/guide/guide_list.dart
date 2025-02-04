@@ -2,11 +2,14 @@ import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class GuideList extends StatelessWidget {
+  const GuideList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.primary_color,
+        scrolledUnderElevation: 0,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: AppColor.txt_primary),
@@ -22,26 +25,19 @@ class GuideList extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Location Title
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-            child: Text(
-              'Sada pthor',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: AppColor.txt_secondary,
-              ),
-            ),
+          SizedBox(
+            height: 10,
           ),
-
-          // Guide List
           Expanded(
-            child: ListView.builder(
-              itemCount: 10, // Number of guides
-              itemBuilder: (context, index) {
-                return GuideTile();
-              },
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              color: AppColor.secondary_color,
+              child: ListView.builder(
+                itemCount: 10, // Number of guides
+                itemBuilder: (context, index) {
+                  return GuideTile();
+                },
+              ),
             ),
           ),
         ],
@@ -58,7 +54,7 @@ class GuideTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xffF5F5F5),
+          color: AppColor.primary_color,
           borderRadius: BorderRadius.circular(12.0),
           boxShadow: [
             BoxShadow(
@@ -72,13 +68,13 @@ class GuideTile extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 25,
-            backgroundImage: AssetImage('assets/images/placeholder.jpg'), // Replace with guide image
+            backgroundImage: AssetImage('assets/images/man.png'), // Replace with guide image
           ),
           title: Row(
             children: [
               Text(
                 'Tanvir Ahmed',
-                style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xff0E3640)),
+                style: TextStyle(fontWeight: FontWeight.bold, color: AppColor.txt_primary),
               ),
               SizedBox(width: 5),
               Icon(Icons.check_circle, color: Colors.blue, size: 16), // Verified icon
@@ -94,7 +90,7 @@ class GuideTile extends StatelessWidget {
               Icon(Icons.star, color: Colors.orange, size: 16),
               SizedBox(width: 5),
               Text(
-                '3.9',
+                '4.5',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],

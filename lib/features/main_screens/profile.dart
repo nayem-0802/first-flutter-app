@@ -18,6 +18,7 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColor.primary_color,
+        scrolledUnderElevation: 0,
         title: const Text(
           "Profile",
           style: TextStyle(fontSize: 22),
@@ -64,23 +65,30 @@ class ProfilePage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      ProfileMenuItem(
+                      CustomItem(
                         title: "Edit information",
                         onTap: () {
                           Get.to(() => UpdateScreen());
                         },
                       ),
-                      ProfileMenuItem(title: "Change app language"),
-                      ProfileMenuItem(title: "Privacy policy"),
-                      ProfileMenuItem(title: "About us"),
+                      CustomItem(title: "Privacy policy"),
+                      CustomItem(title: "About us"),
 
                       // Logout Button
-                      ProfileMenuItem(
+                      CustomItem(
                         title: "Log out",
                         icon: Iconsax.logout,
                         iconColor: AppColor.warning_backgroung,
                         textColor: AppColor.warning_backgroung,
                         onTap: () => AuthRepository.instance.logOut(),
+                      ),
+                      CustomItem(
+                        title: "Delete Account",
+                        icon: Iconsax.profile_delete,
+                        iconColor: AppColor.warning_backgroung,
+                        textColor: AppColor.warning_backgroung,
+                        onTap: (){},
+                        // onTap: () => AuthRepository.instance.logOut(),
                       ),
                     ],
                   ),

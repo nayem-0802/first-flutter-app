@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
 
-class ProfileMenuItem extends StatelessWidget {
-  ProfileMenuItem({
+class CustomItem extends StatelessWidget {
+  CustomItem({
     Key? key,
     required this.title,
     this.icon,

@@ -1,6 +1,7 @@
-import 'package:first_flutter_app/data/repository/auth_repository.dart';
 import 'package:first_flutter_app/features/main_screens/guide/guide_list.dart';
 import 'package:first_flutter_app/features/main_screens/guide/guide_profile.dart';
+import 'package:first_flutter_app/features/main_screens/place_delaits_screen.dart';
+import 'package:first_flutter_app/navigation_menu.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:first_flutter_app/utils/widgets/custom_drawer.dart';
 import 'package:first_flutter_app/utils/widgets/popular_guides.dart';
@@ -20,6 +21,7 @@ class HomeScreen extends StatelessWidget {
       drawer: CustomDrawer(),
       appBar: AppBar(
         backgroundColor: AppColor.primary_color,
+        scrolledUnderElevation: 0,
         elevation: 0,
         automaticallyImplyLeading: true,
         title: Text(
@@ -54,7 +56,9 @@ class HomeScreen extends StatelessWidget {
                               ),
                               const Spacer(),
                               TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.find<NavigationController>().selectedIndex.value = 1;
+                                  },
                                   child: Text("see all",
                                       style: TextStyle(
                                           color: AppColor.txt_secondary,
@@ -71,7 +75,9 @@ class HomeScreen extends StatelessWidget {
                                   return PopulerPlaces(
                                       image: 'assets/images/join2.png',
                                       title: 'Place name',
-                                      onTap: () {});
+                                      onTap: () {
+                                        Get.to(()=> PlaceDelaitsScreen());
+                                      });
                                 }),
                           ),
                           Row(

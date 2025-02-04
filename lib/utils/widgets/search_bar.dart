@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
+import '../../navigation_menu.dart';
 import '../constants/colors.dart';
 import '../device/device_utility.dart';
 
@@ -14,9 +15,12 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(NavigationController());
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: (){
+        controller.selectedIndex.value = 1;
+      },
       child: Padding(
         padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
         child: Container(
