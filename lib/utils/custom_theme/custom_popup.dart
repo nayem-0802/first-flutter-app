@@ -2,6 +2,8 @@ import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomPopup extends StatelessWidget {
+  const CustomPopup({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_flutter_app/data/repository/user_ripository.dart';
 import 'package:first_flutter_app/features/login/login_page.dart';
 import 'package:first_flutter_app/features/login/varify_email.dart';
 import 'package:first_flutter_app/navigation_menu.dart';
@@ -98,6 +99,24 @@ class AuthRepository extends GetxController {
   Future<void> logOut() async {
     try {
       await FirebaseAuth.instance.signOut();
+      Get.offAll(() => LoginPage());
+    } on FirebaseAuthException catch (_) {
+      throw "Firebase Auth Exception";
+    } on FirebaseException catch (_) {
+      throw "Firebase Exception";
+    } on FormatException catch (_) {
+      throw "Format Exception";
+    } on PlatformException catch (_) {
+      throw "Platform Exception";
+    } catch (_) {
+      throw "Something went wrong";
+    }
+  }
+
+  Future<void> deleteAccount() async {
+    try {
+      await UserRipository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await authUser?.delete();
       Get.offAll(() => LoginPage());
     } on FirebaseAuthException catch (_) {
       throw "Firebase Auth Exception";

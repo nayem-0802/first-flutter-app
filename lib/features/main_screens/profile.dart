@@ -1,5 +1,6 @@
 import 'package:first_flutter_app/features/main_screens/update_screen.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
+import 'package:first_flutter_app/utils/custom_theme/custom_delete_popup.dart';
 import 'package:first_flutter_app/utils/device/device_utility.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +88,14 @@ class ProfilePage extends StatelessWidget {
                         icon: Iconsax.profile_delete,
                         iconColor: AppColor.warning_backgroung,
                         textColor: AppColor.warning_backgroung,
-                        onTap: (){},
+                        onTap: (){
+                            // Get.off(NavigationMenu());
+                            showDialog(
+                              barrierDismissible: false,
+                                context: context,
+                                builder: (context) =>
+                                    CustomDeletePopup());
+                        },
                         // onTap: () => AuthRepository.instance.logOut(),
                       ),
                     ],
