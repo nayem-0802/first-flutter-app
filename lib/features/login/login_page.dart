@@ -1,4 +1,3 @@
-import 'package:first_flutter_app/features/login/forget_password/forget_password.dart';
 import 'package:first_flutter_app/features/login/login_controller.dart';
 import 'package:first_flutter_app/features/signup/signup.dart';
 import 'package:first_flutter_app/utils/constants/sizes.dart';
@@ -113,9 +112,7 @@ class LoginPage extends StatelessWidget {
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () {
-                                      Get.to(() => ForgetPassword());
-                                    },
+                                    onPressed: () {},
                                     child: Text(
                                       "Forget password",
                                       style: AppText.customText.bodySmall,

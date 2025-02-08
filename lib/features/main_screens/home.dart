@@ -79,11 +79,11 @@ class HomeScreen extends StatelessWidget {
                                 itemBuilder: (_, index) {
                                   final placename = placecontroller.allPlaces[index];
                                   return PopulerPlaces(
-                                      image: 'assets/images/join2.png',
+                                      image: 'assets/images/Sylhet.jpg',
                                       title: placename,
                                       onTap: () {
                                         Get.to(() => PlaceDelaitsScreen(
-                                              placeName: '',
+                                              placeName: placename,
                                             ));
                                       });
                                 }),
