@@ -1,5 +1,5 @@
+import 'package:first_flutter_app/features/main_screens/guide/guide_list.dart';
 import 'package:first_flutter_app/features/main_screens/home.dart';
-import 'package:first_flutter_app/features/main_screens/notification_screen.dart';
 import 'package:first_flutter_app/features/main_screens/search_screen.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
@@ -30,16 +30,16 @@ class NavigationMenu extends StatelessWidget {
             NavigationDestination(
               icon: Icon(Iconsax.home, color: Colors.white),
               selectedIcon: Icon(Iconsax.home),
-              label: "home",
+              label: "Home",
             ),
             NavigationDestination(
                 icon: Icon(Iconsax.search_normal, color: Colors.white),
                 selectedIcon: Icon(Iconsax.search_normal),
-                label: "search"),
+                label: "Search"),
             NavigationDestination(
-                icon: Icon(Iconsax.notification, color: Colors.white),
-                selectedIcon: Icon(Iconsax.notification),
-                label: "notification"),
+                icon: Icon(Iconsax.people, color: Colors.white),
+                selectedIcon: Icon(Iconsax.people),
+                label: "All Guide"),
             NavigationDestination(
                 icon: Icon(Iconsax.user, color: Colors.white),
                 selectedIcon: Icon(Iconsax.user),
@@ -58,7 +58,7 @@ class NavigationController extends GetxController {
   final screen = [
     const HomeScreen(),
     SearchScreen(),
-    NotificationScreen(),
+    GuideList(),
     ProfilePage(),
   ];
 }

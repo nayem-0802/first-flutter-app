@@ -28,7 +28,7 @@ class UpdateController extends GetxController{
 
   Future<void> updateUserName() async{
     try{
-      CustomProgressIndicator();
+      CustomProgressIndicator.show();
 
       Map<String, dynamic> newName = {
         'name' : username.text.trim(),

@@ -1,12 +1,21 @@
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:first_flutter_app/utils/custom_theme/text_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:iconsax/iconsax.dart';
+
+import 'guide/guide_controller.dart';
+import 'guide/guide_profile.dart';
 
 class PlaceDelaitsScreen extends StatelessWidget {
-  const PlaceDelaitsScreen({super.key});
-
+  const PlaceDelaitsScreen({super.key, required this.placeName});
+  final String placeName;
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(GuideController());
+    controller.fetchGuideForPlace(placeName);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.primary_color,
@@ -29,7 +38,7 @@ class PlaceDelaitsScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
             child: Text(
-              "SADA PATHOR",
+              placeName,
               style: AppText.customText.titleLarge,
             ),
           ),
@@ -72,16 +81,47 @@ class PlaceDelaitsScreen extends StatelessWidget {
             height: 10,
           ),
           Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              color: AppColor.secondary_color,
-              child: ListView.builder(
-                itemCount: 10, // Number of guides
-                itemBuilder: (context, index) {
-                  return GuideTile();
-                },
-              ),
+            child: Obx(
+                  () {
+                if(controller.guideListPlace.isEmpty){
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        color: AppColor.secondary_color,
+                        child: ListView.builder(
+                          itemCount: controller.guideListPlace.length,
+                          // Number of guides
+                          itemBuilder: (context, index) {
+                            final singleGuide = controller.guideListPlace[index];
+                            return GuideTile(singleGuide: singleGuide);
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
+            // child: Container(
+            //   padding: EdgeInsets.symmetric(vertical: 8),
+            //   color: AppColor.secondary_color,
+            //   child: ListView.builder(
+            //     itemCount: 10, // Number of guides
+            //     itemBuilder: (context, index) {
+            //       return GuideTile();
+            //     },
+            //   ),
+            // ),
           ),
         ],
       ),
@@ -91,8 +131,14 @@ class PlaceDelaitsScreen extends StatelessWidget {
 
 // Guide Tile Widget
 class GuideTile extends StatelessWidget {
+  final singleGuide;
+
+  const GuideTile({super.key, this.singleGuide});
+
   @override
   Widget build(BuildContext context) {
+    final controller = GuideController.instance;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
@@ -114,22 +160,27 @@ class GuideTile extends StatelessWidget {
             backgroundImage:
                 AssetImage('assets/images/man.png'),
           ),
-          title: Row(
-            children: [
-              Text(
-                'Tanvir Ahmed',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, color: AppColor.txt_primary),
-              ),
-              SizedBox(width: 5),
-              Icon(Icons.check_circle, color: Colors.blue, size: 16),
-              // Verified icon
-            ],
+          title: Text(
+            '${singleGuide['name']}',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: AppColor.txt_primary),
           ),
           subtitle: Text(
-            'Volagonj, Sylhet',
+            '${singleGuide['area']} , ${singleGuide['city']}',
             style: TextStyle(color: Colors.grey),
           ),
+          trailing: IconButton(onPressed: (){
+            controller.guideCall('${singleGuide['phone']}');
+          }, icon: Icon(Iconsax.call)),
+          onTap: (){
+            Get.to(() => GuideProfile(
+              name: singleGuide['name'],
+              place:
+              '${singleGuide['area']}, ${singleGuide['city']}',
+              services:
+              singleGuide['services'],
+            ));
+          },
         ),
       ),
     );

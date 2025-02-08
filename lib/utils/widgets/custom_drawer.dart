@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../custom_theme/custom_popup.dart';
-
 class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

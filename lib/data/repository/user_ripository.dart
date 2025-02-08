@@ -81,6 +81,20 @@ class UserRipository extends GetxController{
     }
   }
 
+  Future<void> updateUserAsGuide(UserModel updatedUser) async{
+    try{
+      await _db.collection("Users").doc(updatedUser.id).update(updatedUser.toJson());
+    }on FirebaseAuthException catch(e){
+      CustomSnackbar.show("Warning", "Something went wrong", AppColor.warning_backgroung);
+    } on FirebaseException catch(e){
+      CustomSnackbar.show("Warning", "Something went wrong", AppColor.warning_backgroung);
+    } on FormatException catch(e){
+      CustomSnackbar.show("Warning", "Something went wrong", AppColor.warning_backgroung);
+    } on PlatformException catch(e){
+      throw 'Something went wrong.';
+    }
+  }
+
   Future<void> removeUserRecord(String userId) async{
     try{
       await _db.collection("Users").doc(userId).delete();

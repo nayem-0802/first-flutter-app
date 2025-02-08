@@ -15,7 +15,7 @@ class NotificationScreen extends StatelessWidget {
         scrolledUnderElevation: 0,
         title: const Text(
           "Notifications",
-          style: TextStyle(fontSize: 22),
+          style: TextStyle(color: AppColor.txt_primary,fontSize: 22),
         ),
       ),
       body: Padding(

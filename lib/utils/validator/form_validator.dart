@@ -8,6 +8,13 @@ class FormValidator{
     return null;
   }
 
+  static String? validateEmpty(String? value, String txt_name){
+    if(value == null || value.isEmpty){
+      return '${txt_name} cannot be empty';
+    }
+    return null;
+  }
+
   static String? validateEmail(String? value){
     if(value == null || value.isEmpty){
       return 'Please enter your email';

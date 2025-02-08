@@ -1,19 +1,25 @@
+import 'package:first_flutter_app/features/main_screens/place_delaits_screen.dart';
+import 'package:first_flutter_app/features/main_screens/search_controller.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:first_flutter_app/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
-import '../../utils/widgets/custom_item.dart';
+import 'package:get/get.dart';
 
 class SearchScreen extends StatelessWidget {
+  const SearchScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SearchPlacesController());
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColor.primary_color,
         scrolledUnderElevation: 0,
         title: const Text(
-          "Notifications",
-          style: TextStyle(fontSize: 22),
+          "Search",
+          style: TextStyle(color: AppColor.txt_primary, fontSize: 22),
         ),
       ),
       body: Padding(
@@ -25,6 +31,7 @@ class SearchScreen extends StatelessWidget {
               height: DevUtils.appBarHeight() + 8,
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               child: TextField(
+                onChanged: controller.filterSearchResults,
                 autofocus: true,
                 decoration: InputDecoration(
                   filled: true,
@@ -38,27 +45,23 @@ class SearchScreen extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
             ),
-            Flexible(
-              fit: FlexFit.tight,
-              child: Container(
-                padding: EdgeInsets.all(8),
-                width: DevUtils.getScreenWidth(),
-                color: AppColor.secondary_color,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      CustomItem(title: "Edit information"),
-                      CustomItem(title: "Change app language"),
-                      CustomItem(title: "Privacy policy"),
-                      CustomItem(title: "About us"),
-                      CustomItem(title: "Edit information"),
-                      CustomItem(title: "Change app language"),
-                      CustomItem(title: "Privacy policy"),
-                      CustomItem(title: "About us"),
-                    ],
-                  ),
-                ),
-              ),
+            Expanded(
+              child: Obx(() => ListView.builder(
+                    itemCount: controller.filteredPlaces.length,
+                    itemBuilder: (context, index) {
+                      String placename = controller.filteredPlaces[index];
+                      return ListTile(
+                        titleTextStyle: TextStyle(
+                            color: AppColor.txt_primary,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
+                        title: Text(controller.filteredPlaces[index]),
+                        onTap: (){
+                          Get.to(() => PlaceDelaitsScreen(placeName: placename,));
+                        },
+                      );
+                    },
+                  )),
             ),
           ],
         ),

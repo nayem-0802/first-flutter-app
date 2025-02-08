@@ -1,46 +1,59 @@
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+
+import 'guide_controller.dart';
+import 'guide_profile.dart';
 
 class GuideList extends StatelessWidget {
   const GuideList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(GuideController());
+
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColor.primary_color,
         scrolledUnderElevation: 0,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColor.txt_primary),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         title: Text(
           'All Guide List',
-          style: TextStyle(color: AppColor.txt_primary,fontSize: 18),
+          style: TextStyle(color: AppColor.txt_primary, fontSize: 18),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              color: AppColor.secondary_color,
-              child: ListView.builder(
-                itemCount: 10, // Number of guides
-                itemBuilder: (context, index) {
-                  return GuideTile();
-                },
+      body: Obx(
+        () {
+          if(controller.guideList.isEmpty){
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 10,
               ),
-            ),
-          ),
-        ],
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  color: AppColor.secondary_color,
+                  child: ListView.builder(
+                    itemCount: controller.guideList.length,
+                    // Number of guides
+                    itemBuilder: (context, index) {
+                      final singleGuide = controller.guideList[index];
+                      return GuideTile(singleGuide: singleGuide);
+                    },
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -48,8 +61,14 @@ class GuideList extends StatelessWidget {
 
 // Guide Tile Widget
 class GuideTile extends StatelessWidget {
+  final singleGuide;
+
+  const GuideTile({super.key, required this.singleGuide});
+
   @override
   Widget build(BuildContext context) {
+    final controller = GuideController.instance;
+    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
@@ -68,74 +87,32 @@ class GuideTile extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 25,
-            backgroundImage: AssetImage('assets/images/man.png'), // Replace with guide image
+            backgroundImage:
+                AssetImage('assets/images/man.png'), // Replace with guide image
           ),
-          title: Row(
-            children: [
-              Text(
-                'Tanvir Ahmed',
-                style: TextStyle(fontWeight: FontWeight.bold, color: AppColor.txt_primary),
-              ),
-              SizedBox(width: 5),
-              Icon(Icons.check_circle, color: Colors.blue, size: 16), // Verified icon
-            ],
+          title: Text(
+            '${singleGuide['name']}',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: AppColor.txt_primary),
           ),
           subtitle: Text(
-            'Volagonj, Sylhet',
+            '${singleGuide['area']} , ${singleGuide['city']}',
             style: TextStyle(color: Colors.grey),
           ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.star, color: Colors.orange, size: 16),
-              SizedBox(width: 5),
-              Text(
-                '4.5',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
+          trailing: IconButton(icon: Icon(Iconsax.call), onPressed: () {
+            controller.guideCall('${singleGuide['phone']}');
+          },),
+          onTap: (){
+            Get.to(() => GuideProfile(
+              name: singleGuide['name'],
+              place:
+              '${singleGuide['area']}, ${singleGuide['city']}',
+              services:
+              singleGuide['services'],
+            ));
+          },
         ),
       ),
     );
   }
 }
-
-
-// import 'package:flutter/material.dart';
-//
-// class GuideList extends StatelessWidget {
-//   final List<Map<String, String>> guides = [
-//     {"name": "Tanvir Ahmed", "location": "Volaganj, Sylhet", "rating": "4.9"},
-//     {"name": "Arif Hossain", "location": "Sreemangal, Sylhet", "rating": "4.8"},
-//     {"name": "Mizanur Rahman", "location": "Jaflong, Sylhet", "rating": "4.7"},
-//   ];
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         automaticallyImplyLeading: true,
-//         title: Text('Available Guides'),
-//       ),
-//       body: ListView.builder(
-//         itemCount: guides.length,
-//         itemBuilder: (context, index) {
-//           final guide = guides[index];
-//           return ListTile(
-//             leading: CircleAvatar(
-//               backgroundColor: Colors.blue,
-//               child: Text(guide['name']![0]),
-//             ),
-//             title: Text(guide['name']!),
-//             subtitle: Text('${guide['location']} - Rating: ${guide['rating']}'),
-//             trailing: Icon(Icons.arrow_forward),
-//             onTap: () {
-//               // Perform an action when a guide is tapped
-//             },
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }

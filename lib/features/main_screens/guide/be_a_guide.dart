@@ -1,20 +1,21 @@
+import 'package:first_flutter_app/utils/validator/form_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import '../../../navigation_menu.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/custom_theme/button.dart';
-import '../../../utils/custom_theme/custom_popup.dart';
 import '../../../utils/custom_theme/text_theme.dart';
 import '../../../utils/device/device_utility.dart';
+import 'guide_update_controller.dart';
 
 class BeAGuide extends StatelessWidget {
   const BeAGuide({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.put(SingupController());
+    final controller = Get.put(GudieUpdateController());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -55,9 +56,12 @@ class BeAGuide extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           child: Form(
+                            key: controller.updateGuideKey,
                             child: Column(
                               children: [
                                 TextFormField(
+                                  validator: (value) => FormValidator.validateEmpty(value, 'Full name'),
+                                  controller: controller.fullname,
                                   decoration: InputDecoration(
                                     hintText: "Full Name",
                                     hintStyle: TextStyle(
@@ -68,6 +72,8 @@ class BeAGuide extends StatelessWidget {
                                   height: 16.0,
                                 ),
                                 TextFormField(
+                                  controller: controller.nid,
+                                  validator: (value) => FormValidator.validateEmpty(value, 'Nid number'),
                                   decoration: InputDecoration(
                                     hintText: "Nid Number",
                                     hintStyle: TextStyle(
@@ -78,6 +84,8 @@ class BeAGuide extends StatelessWidget {
                                   height: 16.0,
                                 ),
                                 TextFormField(
+                                  controller: controller.city,
+                                  validator: (value) => FormValidator.validateEmpty(value, 'City'),
                                   decoration: InputDecoration(
                                     hintText: "City",
                                     hintStyle: TextStyle(
@@ -88,6 +96,8 @@ class BeAGuide extends StatelessWidget {
                                   height: 16.0,
                                 ),
                                 TextFormField(
+                                  controller: controller.area,
+                                  validator: (value) => FormValidator.validateEmpty(value, 'Area'),
                                   decoration: InputDecoration(
                                     hintText: "Area to be Guide",
                                     hintStyle: TextStyle(
@@ -98,6 +108,9 @@ class BeAGuide extends StatelessWidget {
                                   height: 16.0,
                                 ),
                                 TextFormField(
+                                  controller: controller.postalcode,
+                                  validator: (value) => FormValidator.validateEmpty(value, 'Postal code'),
+                                  keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                     hintText: "Postal/ZIP Code",
                                     hintStyle: TextStyle(
@@ -107,22 +120,15 @@ class BeAGuide extends StatelessWidget {
                                 SizedBox(
                                   height: 16.0,
                                 ),
-                                Row(
-                                  children: [
-                                    Checkbox(
-                                      value: false,
-                                      onChanged: (value) {},
-                                      activeColor: AppColor.txt_primary,
-                                    ),
-                                    GestureDetector(
-                                      child:
-                                          const Text("Agree to Privacy policy"),
-                                      onTap: () {},
-                                    ),
-                                    SizedBox(
-                                      width: 25.0,
-                                    ),
-                                  ],
+                                TextFormField(
+                                  maxLines: 3,
+                                  controller: controller.services,
+                                  validator: (value) => FormValidator.validateEmpty(value, 'Services'),
+                                  decoration: InputDecoration(
+                                    hintText: "Services you provide",
+                                    hintStyle: TextStyle(
+                                        fontWeight: FontWeight.normal),
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 30.0,
@@ -133,20 +139,16 @@ class BeAGuide extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 100),
                                     child: ElevatedButton(
-                                      child: Text("Submit"),
                                       style: ElivatedButton.customButtom.style,
                                       onPressed: () {
-                                        Get.off(NavigationMenu());
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) =>
-                                                CustomPopup());
+                                        controller.updateAsGuide();
                                       },
+                                      child: Text("Submit"),
                                     ),
                                   ),
                                 ),
                                 SizedBox(
-                                  height: DevUtils.bottomNavigation() * 2,
+                                  height: DevUtils.bottomNavigation(),
                                 ),
                               ],
                             ),

@@ -1,6 +1,6 @@
-import 'package:first_flutter_app/features/main_screens/guide/guide_list.dart';
 import 'package:first_flutter_app/features/main_screens/guide/guide_profile.dart';
 import 'package:first_flutter_app/features/main_screens/place_delaits_screen.dart';
+import 'package:first_flutter_app/features/main_screens/search_controller.dart';
 import 'package:first_flutter_app/navigation_menu.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:first_flutter_app/utils/widgets/custom_drawer.dart';
@@ -10,12 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../utils/widgets/populer_places.dart';
+import 'guide/guide_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final placecontroller = Get.put(SearchPlacesController());
+    final controller = Get.put(GuideController());
 
     return Scaffold(
       drawer: CustomDrawer(),
@@ -57,7 +60,9 @@ class HomeScreen extends StatelessWidget {
                               const Spacer(),
                               TextButton(
                                   onPressed: () {
-                                    Get.find<NavigationController>().selectedIndex.value = 1;
+                                    Get.find<NavigationController>()
+                                        .selectedIndex
+                                        .value = 1;
                                   },
                                   child: Text("see all",
                                       style: TextStyle(
@@ -69,14 +74,17 @@ class HomeScreen extends StatelessWidget {
                             height: 250,
                             child: ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: 5,
+                                itemCount: placecontroller.allPlaces.length,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (_, index) {
+                                  final placename = placecontroller.allPlaces[index];
                                   return PopulerPlaces(
                                       image: 'assets/images/join2.png',
-                                      title: 'Place name',
+                                      title: placename,
                                       onTap: () {
-                                        Get.to(()=> PlaceDelaitsScreen());
+                                        Get.to(() => PlaceDelaitsScreen(
+                                              placeName: '',
+                                            ));
                                       });
                                 }),
                           ),
@@ -91,7 +99,9 @@ class HomeScreen extends StatelessWidget {
                               const Spacer(),
                               TextButton(
                                   onPressed: () {
-                                    Get.to(()=> GuideList());
+                                    Get.find<NavigationController>()
+                                        .selectedIndex
+                                        .value = 2;
                                   },
                                   child: Text("see all",
                                       style: TextStyle(
@@ -102,20 +112,30 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(
                             height: 5,
                           ),
-                          SizedBox(
-                            height: 120,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: 5,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (_, index) {
-                                  return PopularGuides(
-                                      image: 'assets/images/man.png',
-                                      title: 'Guide name',
-                                      onTap: () {
-                                        Get.to (()=> GuideProfile());
-                                      });
-                                }),
+                          Obx(
+                            () => SizedBox(
+                              height: 120,
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: controller.guideList.length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (_, index) {
+                                    final singleGuide =
+                                        controller.guideList[index];
+                                    return PopularGuides(
+                                        image: 'assets/images/man.png',
+                                        title: '${singleGuide['name']}',
+                                        onTap: () {
+                                          Get.to(() => GuideProfile(
+                                                name: singleGuide['name'],
+                                                place:
+                                                    '${singleGuide['area']}, ${singleGuide['city']}',
+                                                services:
+                                                    singleGuide['services'],
+                                              ));
+                                        });
+                                  }),
+                            ),
                           ),
                         ],
                       ),

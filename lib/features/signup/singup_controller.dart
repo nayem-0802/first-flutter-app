@@ -38,8 +38,14 @@ class SingupController extends GetxController {
       final newUsre = UserModel(
         id: userCredential.user!.uid,
         name : name.text,
+        role : 'user',
+        nid : '',
         email: email.text.trim(),
         phone : phone.text.trim(),
+        city : '',
+        area : '',
+        postalcode: '',
+        services: '',
         profilePic : '',
       );
 
