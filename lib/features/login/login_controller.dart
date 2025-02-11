@@ -1,6 +1,4 @@
 import 'package:first_flutter_app/data/repository/auth_repository.dart';
-import 'package:first_flutter_app/features/login/login_page.dart';
-import 'package:first_flutter_app/navigation_menu.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:first_flutter_app/utils/custom_theme/custom_snack.dart';
 import 'package:first_flutter_app/utils/custom_theme/loader.dart';
@@ -19,13 +17,6 @@ class LoginController extends GetxController {
 
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
-
-  // @override
-  // void onInit() {
-  //   email.text = localStorage.read('remember_email');
-  //   password.text = localStorage.read('remember_password');
-  //   super.onInit();
-  // }
 
   Future<void> emailPasswordLogin() async{
     try{

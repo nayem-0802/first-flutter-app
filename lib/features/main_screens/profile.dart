@@ -1,3 +1,5 @@
+import 'package:first_flutter_app/features/main_screens/about_us.dart';
+import 'package:first_flutter_app/features/main_screens/privacy_policy.dart';
 import 'package:first_flutter_app/features/main_screens/update_screen.dart';
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:first_flutter_app/utils/custom_theme/custom_delete_popup.dart';
@@ -72,8 +74,16 @@ class ProfilePage extends StatelessWidget {
                           Get.to(() => UpdateScreen());
                         },
                       ),
-                      CustomItem(title: "Privacy policy"),
-                      CustomItem(title: "About us"),
+                      CustomItem(title: "Privacy policy",
+                      onTap: (){
+                        Get.to(PrivacyPolicy());
+                      },
+                      ),
+                      CustomItem(title: "About us",
+                        onTap: (){
+                          Get.to(AboutUs());
+                        },
+                      ),
 
                       // Logout Button
                       CustomItem(

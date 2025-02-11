@@ -26,6 +26,19 @@ class TextString {
   static const String forgetPassword = "Please enter your email to reset your password, "
       "click on continue to get reset email";
 
+  static const String name1 = "MD Abul Hasan Nayem";
+  static const String id1 = "2132020110";
+  static const String leading = "Department of CSE, LU";
+
+  static const String name2 = "Shahria Hossen Shuyeb";
+  static const String id2 = "2132020108";
+
+  static const String name3 = "Sujon Pal";
+  static const String id3 = "2132020121";
+
+  static const String privacyPolicy = "AdvenTour BD collects your National ID (NID) number solely for identity verification and security purposes.\nYour NID data is securely stored. We do not share, sell, or disclose this information to third parties.\nBy using our app, you agree to our data collection policy. For any concerns, contact us at atbdsupport@gmail.com";
+
+
   //home title
   static const String homeTitle = "Hi User,";
   static const String homeSubTitle = "Let us guide you";

@@ -1,4 +1,4 @@
-import 'package:first_flutter_app/features/login/join_us_page.dart';
+import 'package:first_flutter_app/features/login/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -20,7 +20,7 @@ class OnController extends GetxController {
     if(currentPage.value == 2){
       final deviceStorage = GetStorage();
       deviceStorage.write('isFirstTime', false);
-      Get.offAll(() => const JoinUsPage());
+      Get.offAll(() => const LoginPage());
     }else{
       int page = currentPage.value + 1;
       pageController.jumpToPage(page);

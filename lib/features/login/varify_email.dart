@@ -17,6 +17,7 @@ class VerifyEmailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(VerifyEmailController());
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.primary_color,

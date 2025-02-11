@@ -42,8 +42,8 @@ class JoinUsPage extends StatelessWidget {
                       onPressed: () {
                         Get.to(() => const LoginPage());
                       },
-                      child: Text("Login"),
                       style: ElivatedButton.customButtom.style,
+                      child: Text("Login"),
                     ),
                   ),
                 ),
@@ -90,8 +90,8 @@ class JoinUsPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 120),
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text("Be a guide"),
                       style: ElivatedButton.customButtom.style,
+                      child: Text("Be a guide"),
                     ),
                   ),
                 ),

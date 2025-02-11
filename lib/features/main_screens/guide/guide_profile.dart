@@ -1,7 +1,5 @@
 import 'package:first_flutter_app/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../../../utils/device/device_utility.dart';
 
 class GuideProfile extends StatelessWidget {
